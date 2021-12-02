@@ -19,6 +19,6 @@ If you're from Ottawa, you're likely getting pretty tired of all the constructio
 - [ ] Review, clean and export data back into MongoDB
 - [ ] Create Flask API to access the data
 - [ ] Create Leaflet Map with multiple layers and user controls
-- [ ] Determine what views we want to create
-- [ ] Set up pages with the different views
-- [ ] Set up index.html wtih banner to link to other pages
+- [x] Determine what views we want to create
+- [x] Set up pages with the different views
+- [x] Set up index.html with banner to link to other pages
