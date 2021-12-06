@@ -15,7 +15,7 @@ wards = db.geo_ward
 @app.route("/")
 def index():
 
-    ott_data = list(db.geo_.find())
+    ott_data = list(construction.find())
     print(ott_data)
     return render_template('index.html', ott_data=ott_data)
 

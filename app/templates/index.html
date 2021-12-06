@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container text-center">
+      <h1 class="jumbotron">Title</h1>
+      <div>
+        <!-- write a for loop that lists out your data and accesses the values using dot notation. -->
+          {% for item in ott_data %}
+          <div class="col-lg-4">
+              <div class="card" style="width: 20rem;">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ item._id }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Features: {{ item.attributes.FEATURE_TYPE }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Status: {{ item.attributes.STATUS }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Target Start: {{ item.attributes.TARGETED_START }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Project Manager: {{ item.attributes.PROJECT_MANAGER }}</h6>
+                    <p class="card-text">Coordinates: {{ item.geometry.paths}}</p>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+
+      </div>
+    </div>
+  </body>
+
+</html>
