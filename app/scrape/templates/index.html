@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Construction and infrastructure projects</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+</head>
+
+<body>
+  <div class="bg-light p-5 rounded-lg m-3 text-center">
+    <h1 class="display-4">Latest Ottawa Construction Projects by Ward</h1>
+    <a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Latest</a>
+  </div>
+
+  <div class="container">  
+    <div class="row" style="margin-top:40px;">  
+      {% for item in wards %}            
+        {{ item.title | safe }}          
+        {{ item.listData | safe }}      
+      {% endfor %}      
+      <div class="row"><div class="col-12"><hr /></div></div>
+    </div>
+  </div>
+</body>
+
+</html>
