@@ -14,10 +14,10 @@ console.log("working");
 
 function getColor(FEATURE_TYPE) {
   if (FEATURE_TYPE === 'MMUP') return 'green';
-  else if (FEATURE_TYPE === 'RD_SURF') return 'black';
+  else if (FEATURE_TYPE === 'RD_RESF') return 'orange';
   else if (FEATURE_TYPE === 'MCR') return 'yellow';
-  else if (FEATURE_TYPE ==='RRSW') return 'blue';
-  else if (FEATURE_TYPE === 'MMUP') return 'red';
+  else if (FEATURE_TYPE ==='SCR') return 'aqua';
+
 };
 
 let ottawajson = "https://opendata.arcgis.com/datasets/d2fe8f7e3cf24615b62dfc954b5c26b9_0.geojson"
@@ -29,10 +29,24 @@ d3.json(ottawajson).then(function(data) {
 });
 
 function createFeatures(featuredata) {
+
+  
   function onEachFeature(feature, layer){
     layer.bindPopup((`Work Type: ${feature.properties.FEATURE_TYPE}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
   }
-  var featuretype = L.geoJSON(featuredata, {onEachFeature: onEachFeature});
+  var featuretype = L.geoJSON(featuredata, {
+    style: function(feature) {
+      return{
+        color: getColor(feature.properties.FEATURE_TYPE),
+        // Call the chooseColor() function to decide which color to color our neighborhood. (The color is based on the borough.)
+        fillColor: getColor(feature.properties.FEATURE_TYPE),
+        fillOpacity: 1,
+        weight: 3
+      };
+    },
+        
+        
+    onEachFeature: onEachFeature});
 
   createMap(featuretype)
 }
@@ -56,7 +70,7 @@ function createMap(featuretype) {
   let multipath = new L.layerGroup();
 
   let overlays = {
-    featuretype: featuretype
+    All: featuretype
   
   };
 
