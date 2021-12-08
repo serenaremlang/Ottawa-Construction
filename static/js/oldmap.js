@@ -20,7 +20,7 @@ function getColor(FEATURE_TYPE) {
 
 };
 
-let ottawajson = "http://127.0.0.1:5000/"
+let ottawajson = "https://opendata.arcgis.com/datasets/d2fe8f7e3cf24615b62dfc954b5c26b9_0.geojson"
 
 console.log(ottawajson)
 
@@ -32,49 +32,24 @@ function createFeatures(featuredata) {
 
   
   function onEachFeature(feature, layer){
-    for (i=0;i<feature.construction_data.length;i++) {
-      layer.bindPopup((`Work Type: ${feature.construction_data[i].attributes.FEATURE_TYPE}  Targeted Start Date: ${feature.construction_data[i].attributes.TARGETED_START}`));
-
-    }
-    
+    layer.bindPopup((`Work Type: ${feature.properties.FEATURE_TYPE}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
   }
-  
   var featuretype = L.geoJSON(featuredata, {
-
     style: function(feature) {
-      for (i=0;i<feature.construction_data.length;i++) {
-        return {
-          color: getColor(feature.construction_data[i].attributes.FEATURE_TYPE),
+      return{
+        color: getColor(feature.properties.FEATURE_TYPE),
         // Call the chooseColor() function to decide which color to color our neighborhood. (The color is based on the borough.)
-        fillColor: getColor(feature.construction_data[i].attributes.FEATURE_TYPE),
+        fillColor: getColor(feature.properties.FEATURE_TYPE),
         fillOpacity: 1,
         weight: 3
-        };
-      
       };
     },
+        
+        
     onEachFeature: onEachFeature});
 
-    createMap(featuretype)
-  };
-  
-//   var featuretype = L.geoJSON(featuredata, {
-//     style: function(feature) {
-//       return{
-        
-//         color: getColor(feature.construction_data.attributes.FEATURE_TYPE),
-//         // Call the chooseColor() function to decide which color to color our neighborhood. (The color is based on the borough.)
-//         fillColor: getColor(feature.construction_data.attributes.FEATURE_TYPE),
-//         fillOpacity: 1,
-//         weight: 3
-//       };
-//     },
-        
-        
-//     onEachFeature: onEachFeature});
-
-//   createMap(featuretype)
-// }
+  createMap(featuretype)
+}
 
 function createMap(featuretype) {
   

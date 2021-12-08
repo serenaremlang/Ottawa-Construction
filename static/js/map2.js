@@ -1,18 +1,60 @@
+streetmap = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    accessToken: API_KEY
+});
+
+var layers = {
+  Road_work: new L.LayerGroup(),
+  Bike_path: new L.LayerGroup(),
+  Sewer_water: new L.LayerGroup(),
+  Wards: new L.LayerGroup()
+};
+
+
 var map = L.map("mapid", {
     center: [
       45.42, -75.69
     ],
-    zoom: 12
+    zoom: 12,
+    layers: [
+      layers.Road_work,
+      layers.Bike_path,
+      layers.Sewer_water,
+      layers.Wards
+
+    ]
     
 });
 
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    accessToken: API_KEY
-}).addTo(map);
+
+streetmap.addTo(map);
+
+var overlays = {
+  'Road Work': layers.Road_work,
+  'Bike Path/Multi': layers.Bike_path,
+  'Sewers and Watermains': layers.Sewer_water,
+  'Wards': layers.Wards
+}
+
+L.control.layers(null, overlays).addTo(map);
+
+// Create a legend to display information about our map.
+var info = L.control({
+  position: "bottomright"
+});
+
+// When the layer control is added, insert a div with the class of "legend".
+info.onAdd = function() {
+  var div = L.DomUtil.create("div", "legend");
+  return div;
+};
+// Add the info legend to the map.
+info.addTo(map);
 
 let ottawajson = "https://opendata.arcgis.com/datasets/d2fe8f7e3cf24615b62dfc954b5c26b9_0.geojson"
+
+let wardjson = "https://opendata.arcgis.com/datasets/0fdfb868ce3b4d58a36dfadb38a482a2_0.geojson"
 
 console.log(ottawajson)
 
@@ -24,12 +66,40 @@ function getColor(FEATURE_TYPE) {
   
 };
 
+function wardColor(ward) {
+  if (ward === '1') return 'green';
+  else if (ward === '2') return 'orange';
+  else if (ward === '3') return 'yellow';
+  else if (ward ==='5') return 'aqua';
+  else if (ward ==='6') return 'teal';
+  else if (ward ==='7') return 'burgundy';
+  else if (ward ==='8') return 'purple';
+  else if (ward ==='9') return 'magenta';
+  else if (ward ==='10') return 'fuschia';
+  else if (ward ==='11') return 'pink';
+  else if (ward ==='12') return 'violet';
+  else if (ward ==='13') return 'navy';
+  else if (ward ==='14') return 'blue';
+  else if (ward ==='15') return 'olive';
+  else if (ward ==='16') return 'black';
+  else if (ward ==='17') return 'brown';
+  else if (ward ==='18') return 'grey';
+  else if (ward ==='19') return 'gold';
+  else if (ward ==='20') return 'silver';
+  else if (ward ==='21') return 'beige';
+  else if (ward ==='22') return 'crimson';
+  else if (ward ==='23') return 'white';
+
+
+};
 
 
 
 // Getting our GeoJSON data
 d3.json(ottawajson).then(function(data) {
-    // Creating a GeoJSON layer with the retrieved data
+
+
+  d3.json(wardjson).then(function(ward_data) {
     L.geoJson(data, {
       // Styling each feature (in this case, a neighborhood)
       style: function(feature) {
@@ -70,5 +140,13 @@ d3.json(ottawajson).then(function(data) {
         layer.bindPopup("<h1>" + feature.properties.FEATURE_TYPE + "</h1> <hr> <h2>" + feature.properties.TARGETED_START + "</h2>");
   
       }
-    }).addTo(map);
+    }
+
+    
+
+
+
+  
+    
   });
+}).addTo(map);

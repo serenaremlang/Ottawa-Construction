@@ -51,9 +51,10 @@ d3.json(wardjson).then(function(data) {
       style: function(feature) {
         return {
           color: getColor(feature.properties.WARD_NUM),
+      
           // Call the chooseColor() function to decide which color to color our neighborhood. (The color is based on the borough.)
           fillColor: getColor(feature.properties.WARD_NUM),
-          fillOpacity: 1,
+          fillOpacity: 0.3,
           weight: 2.5
         };
       },
