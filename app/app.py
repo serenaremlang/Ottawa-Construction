@@ -1,33 +1,48 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify
+from flask_cors import CORS
+import json
+from bson import json_util
 import pymongo
 from flask_pymongo import PyMongo
 
 # Flask instance
 app = Flask(__name__)
-# mongo = PyMongo(app, uri="mongodb://localhost:27017/Ottawa")
-conn = "mongodb://localhost:27017"
-client = pymongo.MongoClient(conn)
-db = client.Ottawa
-construction = db.geo_
-wards = db.geo_ward
+app.config['MONGO_URI'] = "mongodb://localhost:27017/Ottawa"
+mongo = PyMongo(app)
 
-# Home route to render template
+CORS(app, support_credentials=True)
+# conn = "mongodb://localhost:27017"
+# client = pymongo.MongoClient(conn)
+# db = client.Ottawa
+# construction = db.geo_
+# wards = db.geo_ward
+
 @app.route("/")
 def index():
+    results = mongo.db.geo_.find()
+    data = []
+    for row in results:
+        data.append(row)
 
-    ott_data = list(construction.find())
-    print(ott_data)
-    return render_template('index.html', ott_data=ott_data)
+    return jsonify(database = 'geo_', construction_data = json.loads(json_util.dumps(data)))
+    
 
 
-# @app.route('/bike')
-# def bike():
+@app.route('/geo_ward')
+def geo_ward():
+    results = mongo.db.geo_ward.find()
+    data = []
+    for row in results:
+        data.append(row)
+    return jsonify(database = 'geo_ward', geo_ward_data = json.loads(json_util.dumps(data)))
 
-# @app.route('/road')
-# def road():
-
-# @app.route('/ward')
-# def ward():
+@app.route('/ward')
+def ward():
+    results = mongo.db.geo_ward.find()
+    data = []
+    for row in results:
+        data.append(row)
+    return jsonify(database = 'ward', ward_data = json.loads(json_util.dumps(data)))
 
 if __name__ == "__main__":
     app.run(debug=True)
