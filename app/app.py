@@ -38,11 +38,11 @@ def geo_ward():
 
 @app.route('/ward')
 def ward():
-    results = mongo.db.geo_ward.find()
+    results = mongo.db.wards.find()
     data = []
     for row in results:
         data.append(row)
-    return jsonify(database = 'ward', ward_data = json.loads(json_util.dumps(data)))
+    return jsonify(database = 'wards', ward_data = json.loads(json_util.dumps(data)))
 
 if __name__ == "__main__":
     app.run(debug=True)
