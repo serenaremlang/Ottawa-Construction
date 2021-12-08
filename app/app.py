@@ -2,7 +2,6 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import json
 from bson import json_util
-import pymongo
 from flask_pymongo import PyMongo
 
 # Flask instance
