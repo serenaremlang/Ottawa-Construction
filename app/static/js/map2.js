@@ -218,7 +218,7 @@ var waterd3 = d3.json(ottawajson).then(function(waterdata){
   }).addTo(layers.Sewer_water);
 
   function bikefilter(feature) {
-    if (feature.properties.FEATURE_TYPE === 'SCR') return true
+    if (feature.properties.WORK_TYPE_GROUP === 'Sewer') return true
   };
 });
 
