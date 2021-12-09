@@ -3,6 +3,7 @@ from flask_cors import CORS
 import json
 from bson import json_util
 from flask_pymongo import PyMongo
+import collections
 
 # Flask instance
 app = Flask(__name__)
@@ -20,13 +21,23 @@ CORS(app, support_credentials=True)
 def index():
     results = mongo.db.geo_.find()
     data = []
-    print(results)
+    # jdata = collections.OrderedDict()
+    
+    # jdata['type'] ='FeatureCollection'
+    # jdata['name'] = 'Construction_Road_resurfacing%2C_watermain%2C_sewer%2C_multi-use_pathways%2C_bike_lanes'
+    # jdata['crs'] = { 'type': 'name', 'properties': { 'name': 'urn:ogc:def:crs:OGC:1.3:CRS84' } } 
+    
     for row in results:
         del row['_id']
         data.append(row)
 
-    #@TODO create 'template' for geojson
-    return jsonify(data)
+    #jdata['features'] = data 
+
+    #orderToChaos = jdata
+    return jsonify(type = 'FeatureCollection', name =  'Construction_Road_resurfacing%2C_watermain%2C_sewer%2C_multi-use_pathways%2C_bike_lanes', crs = { 'type': 'name', 'properties': { 'name': 'urn:ogc:def:crs:OGC:1.3:CRS84' } } , features = json.loads(json_util.dumps(data)))
+
+    
+
 
     # for k,v in results.items():
     #     print(k)
@@ -34,7 +45,7 @@ def index():
     #         data.append({k:v})
     # return jsonify(data)
 
-    # return jsonify(database = 'geo_', construction_data = json.loads(json_util.dumps(data)))
+    #return jsonify(database = 'geo_', construction_data = json.loads(json_util.dumps(data)))
     
 
 
