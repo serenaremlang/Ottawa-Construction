@@ -125,13 +125,47 @@ def index():
     #return jsonify(database = 'geo_', construction_data = json.loads(json_util.dumps(data)))
     
 
+# @app.route('/geo_ward')
+# def geo_ward():
+#     results = mongo.db.geo_ward.find()
+#     data = []
+#     for row in results:
+#         data.append(row)
+#     return jsonify(database = 'geo_ward', geo_ward_data = json.loads(json_util.dumps(data)))
+
 @app.route('/geo_ward')
 def geo_ward():
     results = mongo.db.geo_ward.find()
     data = []
     for row in results:
+        del row['_id']
         data.append(row)
-    return jsonify(database = 'geo_ward', geo_ward_data = json.loads(json_util.dumps(data)))
+
+    alias = {"DESCRIPTION":"DESCRIPTION",
+             "NAME":"NAME",
+             "WARD_NUM":"WARD_NUM",
+             "WARD_EN":"WARD_EN",
+             "COUNCILLOR":"COUNCILLOR",
+             "WARD_NAME_EN":"WARD_NAME_EN",
+             "LINK_EN":"LINK_EN",
+             "LINK_LABEL_EN":"LINK_LABEL_EN",
+             "Shape_Length":"Shape_Length",
+             "Shape_Area":"Shape_Area"}
+    geo = {"wkid":4326,"latestWkid":4326}
+
+    fields = [
+        {"name":"DESCRIPTION","type":"esriFieldTypeString","alias":"DESCRIPTION","length":60},
+        {"name":"NAME","type":"esriFieldTypeString","alias":"NAME","length":20},
+        {"name":"WARD_NUM","type":"esriFieldTypeString","alias":"WARD_NUM","length":3},
+        {"name":"WARD_EN","type":"esriFieldTypeString","alias":"WARD_EN","length":50},
+        {"name":"COUNCILLOR","type":"esriFieldTypeString","alias":"COUNCILLOR","length":50},
+        {"name":"WARD_NAME_EN","type":"esriFieldTypeString","alias":"WARD_NAME_EN","length":255},
+        {"name":"LINK_EN","type":"esriFieldTypeString","alias":"LINK_EN","length":150},
+        {"name":"LINK_LABEL_EN","type":"esriFieldTypeString","alias":"LINK_LABEL_EN","length":75},
+        {"name":"Shape_Length","type":"esriFieldTypeDouble","alias":"Shape_Length"},
+        {"name":"Shape_Area","type":"esriFieldTypeDouble","alias":"Shape_Area"}]
+    return jsonify(displayFieldName = "DESCRIPTION", fieldAliases = alias, geometryType = "esriGeometryPolygon", spatialReference = geo, fields = fields, features = json.loads(json_util.dumps(data)))
+
 
 
 @app.route('/ward')
