@@ -42,7 +42,8 @@ var overlays = {
 
 L.control.layers(null, overlays).addTo(map);
 
-let ottawajson = "https://opendata.arcgis.com/datasets/d2fe8f7e3cf24615b62dfc954b5c26b9_0.geojson";
+//let ottawajson = "https://opendata.arcgis.com/datasets/d2fe8f7e3cf24615b62dfc954b5c26b9_0.geojson";
+let ottawajson = "http://127.0.0.1:5000/construction";
 
 let wardjson = "https://opendata.arcgis.com/datasets/0fdfb868ce3b4d58a36dfadb38a482a2_0.geojson";
 
