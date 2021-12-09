@@ -20,10 +20,19 @@ CORS(app, support_credentials=True)
 def index():
     results = mongo.db.geo_.find()
     data = []
+    print(results)
     for row in results:
+        del row['_id']
         data.append(row)
+    return jsonify(data)
 
-    return jsonify(database = 'geo_', construction_data = json.loads(json_util.dumps(data)))
+    # for k,v in results.items():
+    #     print(k)
+    #     if k!="_id":
+    #         data.append({k:v})
+    # return jsonify(data)
+
+    # return jsonify(database = 'geo_', construction_data = json.loads(json_util.dumps(data)))
     
 
 
