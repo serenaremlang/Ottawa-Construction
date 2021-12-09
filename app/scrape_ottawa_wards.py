@@ -8,14 +8,14 @@ import codecs
 def scrape():
  
     # Scrape into Soup - hit the url and save it as a file (delete the file from the filesystem to have it fetch live again)
-    if os.path.isfile("wards.html"):
-        html = codecs.open("wards.html", "r", "ISO-8859-1").read()
+    if os.path.isfile("wards_scrape.html"):
+        html = codecs.open("wards_scrape.html", "r", "ISO-8859-1").read()
     else:
         response = requests.get(f'https://ottawa.ca/en/planning-development-and-construction/construction-and-infrastructure-projects')
-        f = open("wards.html", "x")
+        f = open("wards_scrape.html", "x")
         f.write(response.text)
         f.close()
-        html = codecs.open("wards.html", "r", "ISO-8859-1").read()
+        html = codecs.open("wards_scrape.html", "r", "ISO-8859-1").read()
 
     #html.encoding = 'utf-8'
     soup = bs(html, 'html.parser')
