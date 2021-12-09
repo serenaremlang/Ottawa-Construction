@@ -16,7 +16,7 @@ CORS(app, support_credentials=True)
 # construction = db.geo_
 # wards = db.geo_ward
 
-@app.route("/")
+@app.route("/construction")
 def index():
     results = mongo.db.geo_.find()
     data = []
@@ -24,6 +24,8 @@ def index():
     for row in results:
         del row['_id']
         data.append(row)
+
+    #@TODO create 'template' for geojson
     return jsonify(data)
 
     # for k,v in results.items():
