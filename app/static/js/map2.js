@@ -45,8 +45,9 @@ L.control.layers(null, overlays).addTo(map);
 //let ottawajson = "https://opendata.arcgis.com/datasets/d2fe8f7e3cf24615b62dfc954b5c26b9_0.geojson";
 let ottawajson = "http://127.0.0.1:5000/construction";
 
-//let wardjson = "https://opendata.arcgis.com/datasets/0fdfb868ce3b4d58a36dfadb38a482a2_0.geojson";
+// let wardjson = "https://opendata.arcgis.com/datasets/0fdfb868ce3b4d58a36dfadb38a482a2_0.geojson";
 let wardjson = "http://127.0.0.1:5000/geo_ward"
+console.log(wardjson)
 
 function getColor(FEATURE_TYPE) {
     if (FEATURE_TYPE === 'Multi-Pathway') return 'green';
@@ -82,6 +83,12 @@ function wardColor(ward) {
 
 
 };
+
+function onEachFeature(feature, layer){
+  layer.bindPopup((`Work Type: ${feature.properties.WORK_TYPE_GROUP}  Targeted Start Date: ${feature.properties.TARGETED_START}`))
+  
+}
+
 
 console.log(ottawajson);
 console.log(wardjson);
@@ -193,7 +200,10 @@ var multid3 = d3.json(ottawajson).then(function(multidata){
         fillOpacity: 1, 
         weight: 2.5
       };
-    },
+    }, onEachFeature: function(feature, layer) {
+      layer.bindPopup(`Work Type: ${feature.properties.WORK_TYPE_GROUP} Start Date: ${feature.properties.TARGETED_START}`);
+    }
+
   }).addTo(layers.Multi_use);
 
   function bikefilter(feature) {

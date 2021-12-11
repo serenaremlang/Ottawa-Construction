@@ -93,4 +93,3 @@ wardd3 = d3.json(wardjson).then(function(data) {
   }).addTo(map);
 });
 
-console.log(wardd3)

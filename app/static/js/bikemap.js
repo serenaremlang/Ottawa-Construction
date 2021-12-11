@@ -32,7 +32,7 @@ var biked3 = d3.json(ottawajson).then(function(bikedata){
         color: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
-        weight: 2.5
+        weight: 4
       };
     },
   }).addTo(map);

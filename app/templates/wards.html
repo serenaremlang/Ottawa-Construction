@@ -8,6 +8,7 @@
   <title>Construction and infrastructure projects</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
 </head>
 
 <body>
@@ -172,8 +173,9 @@
     <h2 class="display-4" style="font-weight: initial;">Latest Ottawa Construction Projects by Ward</h2>
     <a class="btn btn-primary btn-lg" href="/wards/scrape" role="button">Get Latest</a>
   </div>
-
-  <div class="container">  
+  <div id="mapid"></div>
+  <div class="container">
+    <div class="row" style="margin-top:40px;"> </div>  
     <div class="row" style="margin-top:40px;">
       Select a ward to filter for: <select id="ddlWard" onchange="optionChanged(this.value)">
           <option value="w0">All</option>   
@@ -191,10 +193,22 @@
       {% endfor %}      
       <div class="row"><div class="col-12"><hr /></div></div>
     </div> 
+   
   </div>
 </body>
 <!-- D3 JavaScript -->
+
+
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+crossorigin=""></script>
+
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <!-- Our custom JavaScript -->
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/config.js') }}"></script>
+    <!-- Our leaflet JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/wardmap.js') }}"></script>
+    <!-- Our custom JavaScript -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 </html>
