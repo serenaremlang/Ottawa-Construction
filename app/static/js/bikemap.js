@@ -23,28 +23,29 @@ function getColor(FEATURE_TYPE) {
   else if (FEATURE_TYPE === "Sewer") return 'aqua';
 
 };
-function onEachFeature(feature, layer){
+function onEach(feature, layer){
   for (i=0;i<feature.length;i++) {
-    layer.bindPopup((`Work Type: ${feature.properties.FEATURE_TYPE}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
+    layer.bindPopup((`Work Type: ${feature.properties.WORK_TYPE_GROUP}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
 
   }
   
 }
-var biked3 = d3.json(ottawajson).then(function(bikedata){
-  L.geoJson(bikedata, {
+var biked3 = d3.json(ottawajson).then(function(multidata){
+  L.geoJson(multidata, {
     filter: bikefilter, 
     style: function(feature){
       return{
         color: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
-        weight: 4
+        weight: 2.5
       };
-    }, onEachFeature: onEachFeature
+    }, onEachFeature: onEach
   }).addTo(map);
 
   function bikefilter(feature) {
     if (feature.properties.WORK_TYPE_GROUP === 'Bike-Lanes') return true
   };
 });
-  console.log(biked3)
+
+console.log(biked3)

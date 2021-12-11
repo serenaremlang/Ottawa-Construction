@@ -24,22 +24,29 @@ function getColor(FEATURE_TYPE) {
 
 };
 
-var roadd3 = d3.json(ottawajson).then(function(roaddata){
-    L.geoJson(roaddata, {
-      filter: bikefilter, 
-      style: function(feature){
-        return{
-          color: getColor(feature.properties.WORK_TYPE_GROUP), 
-          fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
-          fillOpacity: 1, 
-          weight: 2.5
-        };
-      },
-    }).addTo(map);
+function onEachFeature(feature, layer){
+  for (i=0;i<feature.length;i++) {
+    layer.bindPopup((`Work Type: ${feature.properties.FEATURE_TYPE}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
+
+  }
   
-    function bikefilter(feature) {
-      if (feature.properties.WORK_TYPE_GROUP === 'Road-Work') return true
-    };
-  });
-  
-  console.log(roadd3)
+}
+var roadd3 = d3.json(ottawajson).then(function(multidata){
+  L.geoJson(multidata, {
+    filter: bikefilter, 
+    style: function(feature){
+      return{
+        color: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillOpacity: 1, 
+        weight: 2.5
+      };
+    }, onEachFeature: onEachFeature
+  }).addTo(map);
+
+  function bikefilter(feature) {
+    if (feature.properties.WORK_TYPE_GROUP === 'Road-Work') return true
+  };
+});
+
+console.log(multid3)
