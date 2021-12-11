@@ -15,7 +15,7 @@ var map = L.map("mapid", {
 streetmap.addTo(map);
 
 
-let wardjson = "https://opendata.arcgis.com/datasets/0fdfb868ce3b4d58a36dfadb38a482a2_0.geojson";
+let wardjson = "http://127.0.0.1:5000/geo_ward";
 
 function wardColor(ward) {
   if (ward === '1') return 'green';
