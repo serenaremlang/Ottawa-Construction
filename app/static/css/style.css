@@ -1,10 +1,14 @@
 
 * {margin: 0; padding: 0;} 
- 
-#container {
- width: 1000px;
+
+.show {display:block;}
+.hide {display:none;}
+
+
+#photocontainer {
+ width: 100%;
  overflow: hidden;
- margin: 50px auto;
+ margin: 0px auto;
  /* background: white; */
 }
 
@@ -38,7 +42,7 @@ header p {
 	   margin-left: 0px;
 	}
 	100% {
-	   margin-left: -2125px;
+	   margin-left: -4000px; /*2125*/
 	}
 }
 
@@ -47,7 +51,7 @@ header p {
 	  margin-left: 0px;
 	}
 	100% {
-	  margin-left: -2125px;
+	  margin-left: -4000px;
 	}
 }
 
@@ -56,7 +60,7 @@ header p {
 	  margin-left: 0px;
 	}
 	100% {
-	  margin-left: -2125px;
+	  margin-left: -4000px;
 	}
 }
 
@@ -65,7 +69,7 @@ header p {
 	  margin-left: 0px;
 	}
 	100% {
-	  margin-left: -2125px;
+	  margin-left: -4000px;
 	}
 }
 
@@ -74,15 +78,15 @@ header p {
 	  margin-left: 0px;
 	}
 	100% {
-	  margin-left: -2125px;
+	  margin-left: -4000px;
 	}
 }
 
 
 .photobanner {
 	height: 233px;
-	width: 3550px;
-	margin-bottom: 80px;
+	width: 8000px; /*3550 */
+	margin-bottom: 0px;
 }
 
 .photobanner img {
@@ -91,9 +95,20 @@ header p {
 	-o-transition: all 0.5s ease;
 	-ms-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-    width:350px;
-    height:233px;
+    width:400px;  /*350*/
+    height:233px;	
+} 
+
+.photobanner > div {
+	width:350px;  
+    height:233px;	
 }
+
+/* .photobanner div img {
+	display: block;
+	width: 100%;
+	height: auto;
+  } */
 
 .photobanner img:hover {
 	-webkit-transform: scale(1.1);
@@ -102,17 +117,60 @@ header p {
 	-ms-transform: scale(1.1);
 	transform: scale(1.1);
 	cursor: pointer;
-
 	-webkit-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
-	box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.2); 	
+} 
+
+.photobanner > div:hover {
+	opacity: 0;
 }
 
+/* .imgcontainer {
+	position: relative;	
+  } */
+  
+
+.overlay {
+	/* position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;  */
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: #008CBA;
+  }
+  
+.overlay:hover {
+	opacity: 1;
+  }
+  
+  .text {
+	color: white;
+	font-size: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+  }
+
 html,
-body,
-#mapid {
+body {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
+}
+
+#mapid {
+  width: 60%;
+  height: 50%;
+  padding: 0;
+  margin: 0px auto;
 }

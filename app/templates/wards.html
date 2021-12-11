@@ -7,23 +7,194 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Construction and infrastructure projects</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 
 <body>
-  <div class="bg-light p-5 rounded-lg m-3 text-center">
-    <h1 class="display-4">Latest Ottawa Construction Projects by Ward</h1>
+    
+  <!-- <div class="bg-light p-5 rounded-lg m-3 text-center"> -->
+    <div id="photocontainer">
+      <div class="photobanner">
+
+        <!-- <div class="first" style="background-image:url('{{ url_for('static', filename='images/banner/road-work.jpg') }}')" data-nav="road-work">         
+          <div class="overlay">
+            <div class="text">Road Work</div>
+          </div>
+        </div>
+        <div class="imgcontainer" style="background-image:url('{{ url_for('static', filename='images/banner/water-main.jpg') }}')"  data-nav="water-main">          
+          <div class="overlay">
+            <div class="text">Water Main</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt="" data-nav="sewer" />
+          <div class="overlay">
+            <div class="text">Sewer</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+          <div class="overlay">
+            <div class="text">Multi-Pathway</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />
+          <div class="overlay">
+            <div class="text">Bike Lanes</div>
+          </div>
+        </div>   
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+          <div class="overlay">
+            <div class="text">Road Work</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+          <div class="overlay">
+            <div class="text">Water Main</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt="" data-nav="sewer" />
+          <div class="overlay">
+            <div class="text">Sewer</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+          <div class="overlay">
+            <div class="text">Multi-Pathway</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />
+          <div class="overlay">
+            <div class="text">Bike Lanes</div>
+          </div>
+        </div>   
+        
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+          <div class="overlay">
+            <div class="text">Road Work</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+          <div class="overlay">
+            <div class="text">Water Main</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt="" data-nav="sewer" />
+          <div class="overlay">
+            <div class="text">Sewer</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+          <div class="overlay">
+            <div class="text">Multi-Pathway</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />
+          <div class="overlay">
+            <div class="text">Bike Lanes</div>
+          </div>
+        </div>   
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+          <div class="overlay">
+            <div class="text">Road Work</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+          <div class="overlay">
+            <div class="text">Water Main</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt="" data-nav="sewer" />
+          <div class="overlay">
+            <div class="text">Sewer</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+          <div class="overlay">
+            <div class="text">Multi-Pathway</div>
+          </div>
+        </div>
+        <div class="imgcontainer">          
+          <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />
+          <div class="overlay">
+            <div class="text">Bike Lanes</div>
+          </div>
+        </div>       -->
+    
+
+        <img class="first" src="{{ url_for('static', filename='images/banner/ottawa.jpeg') }}" alt="" data-nav="/" />
+        <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+        <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+        <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt="" data-nav="sewer" />
+        <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+        <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />  
+        <img src="{{ url_for('static', filename='images/banner/wards.jpeg') }}" alt="" data-nav="wards" />
+        <img src="{{ url_for('static', filename='images/banner/ottawa.jpeg') }}" alt="" data-nav="/" />  
+        <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+        <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+        <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt=""data-nav="sewer" />
+        <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+        <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />  
+        <img src="{{ url_for('static', filename='images/banner/wards.jpeg') }}" alt="" data-nav="wards" /> 
+        
+        <img src="{{ url_for('static', filename='images/banner/ottawa.jpeg') }}" alt="" data-nav="/" /> 
+        <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+        <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+        <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt="" data-nav="sewer" />
+        <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+        <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" /> 
+        <img src="{{ url_for('static', filename='images/banner/wards.jpeg') }}" alt="" data-nav="wards" />
+        <img src="{{ url_for('static', filename='images/banner/ottawa.jpeg') }}" alt="" data-nav="/" />    
+        <img src="{{ url_for('static', filename='images/banner/road-work.jpg') }}" alt="" data-nav="road-work" />
+        <img src="{{ url_for('static', filename='images/banner/water-main.jpg') }}" alt="" data-nav="water-main" />
+        <img src="{{ url_for('static', filename='images/banner/sewer.jpg') }}" alt=""data-nav="sewer" />
+        <img src="{{ url_for('static', filename='images/banner/multi-pathway.jpg') }}" alt="" data-nav="multi-pathway" />
+        <img src="{{ url_for('static', filename='images/banner/bike-lanes.jpg') }}" alt="" data-nav="bike-lanes" />    
+        <img src="{{ url_for('static', filename='images/banner/wards.jpeg') }}" alt="" data-nav="wards" />
+      </div>
+  </div>
+  <div class="bg-primary p-5 rounded-lg text-center">    
+    <h2 class="display-4" style="font-weight: initial;">Latest Ottawa Construction Projects by Ward</h2>
     <a class="btn btn-primary btn-lg" href="/wards/scrape" role="button">Get Latest</a>
   </div>
 
   <div class="container">  
-    <div class="row" style="margin-top:40px;">  
-      {% for item in wards %}            
+    <div class="row" style="margin-top:40px;">
+      Select a ward to filter for: <select id="ddlWard" onchange="optionChanged(this.value)">
+          <option value="w0">All</option>   
+        {% for item in ward_lookup %} 
+          <option value="{{ item.optionID }}">{{ item.optionData }} </option> 
+        {% endfor %}      
+      </select>
+    </div>
+    <div class="row" style="margin-top:40px;">   
+      {% for item in ward_markup %}
+      <div id="{{ item.optionID }}" class="row">            
         {{ item.title | safe }}          
-        {{ item.listData | safe }}      
+        {{ item.listData | safe }}  
+      </div>    
       {% endfor %}      
       <div class="row"><div class="col-12"><hr /></div></div>
-    </div>
+    </div> 
   </div>
 </body>
-
+<!-- D3 JavaScript -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<!-- Our custom JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
 </html>

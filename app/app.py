@@ -73,10 +73,11 @@ def bike_lanes():
 def wards():
 
     # Get all the data from mongo
-    all_wards = mongo.db.wards.find({})
+    all_ward_markup = mongo.db.ward_markup.find({})
+    all_ward_lookup = mongo.db.ward_lookup.find({})
 
     # Return templated data
-    return render_template("wards.html", wards=all_wards)
+    return render_template("wards.html", ward_markup=all_ward_markup, ward_lookup=all_ward_lookup)
 
 
 # Route for scraping
@@ -84,16 +85,19 @@ def wards():
 def scrape():
 
     # ref to mongo 
-    mongo_wards = mongo.db.wards
+    mongo_ward_markup = mongo.db.ward_markup
+    mongo_ward_lookup = mongo.db.ward_lookup
 
     # call scrape function
-    wards_data = scrape_ottawa_wards.scrape()
+    ward_markup, ward_lookup = scrape_ottawa_wards.scrape()
     
     # clear out the existing documents
-    mongo_wards.delete_many({})
+    mongo_ward_markup.delete_many({})
+    mongo_ward_lookup.delete_many({})
 
     # Update the Mongo db with the latest data
-    mongo_wards.insert_many(wards_data)
+    mongo_ward_markup.insert_many(ward_markup)
+    mongo_ward_lookup.insert_many(ward_lookup)
 
     # Redirect back home
     return redirect("/wards", code=302)
