@@ -85,7 +85,10 @@ function wardColor(ward) {
 };
 
 function onEachFeature(feature, layer){
-  layer.bindPopup((`Work Type: ${feature.properties.WORK_TYPE_GROUP}  Targeted Start Date: ${feature.properties.TARGETED_START}`))
+  for (i=0;i<feature.length;i++) {
+    layer.bindPopup((`Work Type: ${feature.properties.FEATURE_TYPE}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
+
+  }
   
 }
 
@@ -125,6 +128,7 @@ wardd3 = d3.json(wardjson).then(function(data) {
           layer.setStyle({
             fillOpacity: 0.5
           });
+        
         },
         // When a feature (neighborhood) is clicked, it enlarges to fit the screen.
         click: function(event) {
@@ -192,17 +196,15 @@ console.log(biked3)
 
 var multid3 = d3.json(ottawajson).then(function(multidata){
   L.geoJson(multidata, {
-    filter: bikefilter, 
-    style: function(feature){
+    filter: bikefilter, style: function(feature){
       return{
         color: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
         weight: 2.5
       };
-    }, onEachFeature: function(feature, layer) {
-      layer.bindPopup(`Work Type: ${feature.properties.WORK_TYPE_GROUP} Start Date: ${feature.properties.TARGETED_START}`);
-    }
+    }, onEachFeature: onEachFeature
+    
 
   }).addTo(layers.Multi_use);
 
