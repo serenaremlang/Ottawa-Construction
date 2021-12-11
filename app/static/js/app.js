@@ -4,6 +4,18 @@ d3.selectAll(".photobanner img").on("click", function() {
     window.location.href = uri;
 });
 
+// d3.selectAll(".photobanner img").on("mouseover", function() {        
+//     let img = d3.select(this);       
+//     let txt = img.attr('data-nav');
+//     window.location.href = uri;
+// });
+
+// d3.selectAll(".photobanner img").on("mouseout", function() {        
+//     let btn = d3.select(this);       
+//     let uri = btn.attr('data-nav');
+//     window.location.href = uri;
+// });
+
 // OnChange function for select. Takes in the Test Subject ID to fitler on
 function optionChanged(wardID) {
     //console.log(wardID);
