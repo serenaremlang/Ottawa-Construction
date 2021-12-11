@@ -24,21 +24,22 @@ function getColor(FEATURE_TYPE) {
 
 };
 
-var biked3 = d3.json(ottawajson).then(function(bikedata){
-  L.geoJson(bikedata, {
-    filter: bikefilter, 
-    style: function(feature){
-      return{
-        color: getColor(feature.properties.WORK_TYPE_GROUP), 
-        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
-        fillOpacity: 1, 
-        weight: 2.5
-      };
-    },
-  }).addTo(map);
-
-  function bikefilter(feature) {
-    if (feature.properties.WORK_TYPE_GROUP === 'Bike-Lanes') return true
-  };
-});
-  console.log(biked3)
+var waterd3 = d3.json(ottawajson).then(function(waterdata){
+    L.geoJson(waterdata, {
+      filter: bikefilter, 
+      style: function(feature){
+        return{
+          color: getColor(feature.properties.WORK_TYPE_GROUP), 
+          fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
+          fillOpacity: 1, 
+          weight: 5
+        };
+      },
+    }).addTo(map);
+  
+    function bikefilter(feature) {
+      if (feature.properties.WORK_TYPE_GROUP === 'Sewer') return true
+    };
+  });
+  
+  console.log(waterd3)
