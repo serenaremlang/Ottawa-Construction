@@ -49,10 +49,10 @@ let ottawajson = "http://127.0.0.1:5000/construction";
 let wardjson = "http://127.0.0.1:5000/geo_ward"
 
 function getColor(FEATURE_TYPE) {
-    if (FEATURE_TYPE === 'MMUP') return 'green';
-    else if (FEATURE_TYPE === 'RD_RESF') return 'red';
-    else if (FEATURE_TYPE === 'MCR') return 'yellow';
-    else if (FEATURE_TYPE ==='SCR') return 'aqua';
+    if (FEATURE_TYPE === 'Multi-Pathway') return 'green';
+    else if (FEATURE_TYPE === 'Road-Work') return 'red';
+    else if (FEATURE_TYPE === "Bike-Lanes") return 'yellow';
+    else if (FEATURE_TYPE === "Sewer") return 'aqua';
   
 };
 
@@ -167,8 +167,8 @@ var biked3 = d3.json(ottawajson).then(function(bikedata){
     filter: bikefilter, 
     style: function(feature){
       return{
-        color: getColor(feature.properties.FEATURE_TYPE), 
-        fillColor: getColor(feature.properties.FEATURE_TYPE), 
+        color: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
         weight: 2.5
       };
@@ -176,7 +176,7 @@ var biked3 = d3.json(ottawajson).then(function(bikedata){
   }).addTo(layers.Bike_path);
 
   function bikefilter(feature) {
-    if (feature.properties.FEATURE_TYPE === 'MCR') return true
+    if (feature.properties.WORK_TYPE_GROUP === 'Bike-Lanes') return true
   };
 });
 
@@ -188,8 +188,8 @@ var multid3 = d3.json(ottawajson).then(function(multidata){
     filter: bikefilter, 
     style: function(feature){
       return{
-        color: getColor(feature.properties.FEATURE_TYPE), 
-        fillColor: getColor(feature.properties.FEATURE_TYPE), 
+        color: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
         weight: 2.5
       };
@@ -197,7 +197,7 @@ var multid3 = d3.json(ottawajson).then(function(multidata){
   }).addTo(layers.Multi_use);
 
   function bikefilter(feature) {
-    if (feature.properties.FEATURE_TYPE === 'MMUP') return true
+    if (feature.properties.WORK_TYPE_GROUP === 'Multi-Pathway') return true
   };
 });
 
@@ -209,8 +209,8 @@ var waterd3 = d3.json(ottawajson).then(function(waterdata){
     filter: bikefilter, 
     style: function(feature){
       return{
-        color: getColor(feature.properties.FEATURE_TYPE), 
-        fillColor: getColor(feature.properties.FEATURE_TYPE), 
+        color: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
         weight: 5
       };
@@ -218,7 +218,7 @@ var waterd3 = d3.json(ottawajson).then(function(waterdata){
   }).addTo(layers.Sewer_water);
 
   function bikefilter(feature) {
-    if (feature.properties.FEATURE_TYPE === 'SCR') return true
+    if (feature.properties.WORK_TYPE_GROUP === 'Sewer') return true
   };
 });
 
@@ -229,8 +229,8 @@ var roadd3 = d3.json(ottawajson).then(function(roaddata){
     filter: bikefilter, 
     style: function(feature){
       return{
-        color: getColor(feature.properties.FEATURE_TYPE), 
-        fillColor: getColor(feature.properties.FEATURE_TYPE), 
+        color: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
         fillOpacity: 1, 
         weight: 2.5
       };
@@ -238,7 +238,7 @@ var roadd3 = d3.json(ottawajson).then(function(roaddata){
   }).addTo(layers.Road_work);
 
   function bikefilter(feature) {
-    if (feature.properties.FEATURE_TYPE === 'RD_RESF') return true
+    if (feature.properties.WORK_TYPE_GROUP === 'Road-Work') return true
   };
 });
 
