@@ -9,16 +9,24 @@ If you're from Ottawa, you're likely getting pretty tired of all the constructio
 
 ---
 ## Project outline
-**Data Source**: [City of Ottawa Open Data](https://open.ottawa.ca/datasets/ottawa::construction-road-resurfacing-watermain-sewer-multi-use-pathways-bike-lanes/about)
+
+## STEP 1: Data Acquisition
+
+We acquired our data from a number of locations and in a number of formats. First, we were able to access `.geoJson` files for both data with 
+
+**Data Source**: 
+- [City of Ottawa Open Data](https://open.ottawa.ca/datasets/ottawa::construction-road-resurfacing-watermain-sewer-multi-use-pathways-bike-lanes/about)
+- [City of Ottawa Wards](https://opendata.arcgis.com/datasets/0fdfb868ce3b4d58a36dfadb38a482a2_0.geojson)
+- [City of Ottawa Project Summaries](https://ottawa.ca/en/planning-development-and-construction/construction-and-infrastructure-projects)
 
 ![Project-Cycle, crop out header](images/project_cycle.png) 
 ---
 
-### To Do:
-- [x] Import data into MongoDB
-- [ ] Review, clean and export data back into MongoDB
-- [ ] Create Flask API to access the data
-- [ ] Create Leaflet Map with multiple layers and user controls
-- [x] Determine what views we want to create
-- [x] Set up pages with the different views
-- [x] Set up index.html with banner to link to other pages
+### Tools used
+- Database: MongoDB
+- Website structure and presentation: Javascript, HTML, CSS/Bootstrap
+- Mapping and chart: Leaflet, Mapbox, Plotly
+- Data Import: JQ, Mongoimport
+- Data Transformation and Retreival: Python, Pandas, BeautifulSoup, Flask
+
+
