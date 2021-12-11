@@ -183,7 +183,7 @@ var biked3 = d3.json(ottawajson).then(function(bikedata){
         fillOpacity: 1, 
         weight: 2.5
       };
-    },
+    }, onEachFeature: onEachFeature
   }).addTo(layers.Bike_path);
 
   function bikefilter(feature) {
@@ -196,17 +196,14 @@ console.log(biked3)
 
 var multid3 = d3.json(ottawajson).then(function(multidata){
   L.geoJson(multidata, {
-    filter: bikefilter, style: function(feature){
+    filter: bikefilter, 
+    style: function(feature){
       return{
         color: getColor(feature.properties.WORK_TYPE_GROUP), 
-        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
-        fillOpacity: 1, 
-        weight: 2.5
-      };
-    }, onEachFeature: onEachFeature
-    
-
-  }).addTo(layers.Multi_use);
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), fillOpacity: 1, 
+        weight: 2.5};
+      }, onEachFeature: onEachFeature
+    }).addTo(layers.Multi_use);
 
   function bikefilter(feature) {
     if (feature.properties.WORK_TYPE_GROUP === 'Multi-Pathway') return true
@@ -226,7 +223,7 @@ var waterd3 = d3.json(ottawajson).then(function(waterdata){
         fillOpacity: 1, 
         weight: 5
       };
-    },
+    },onEachFeature: onEachFeature
   }).addTo(layers.Sewer_water);
 
   function bikefilter(feature) {
@@ -246,7 +243,7 @@ var roadd3 = d3.json(ottawajson).then(function(roaddata){
         fillOpacity: 1, 
         weight: 2.5
       };
-    },
+    },onEachFeature: onEachFeature
   }).addTo(layers.Road_work);
 
   function bikefilter(feature) {

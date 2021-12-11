@@ -23,7 +23,13 @@ function getColor(FEATURE_TYPE) {
   else if (FEATURE_TYPE === "Sewer") return 'aqua';
 
 };
+function onEachFeature(feature, layer){
+  for (i=0;i<feature.length;i++) {
+    layer.bindPopup((`Work Type: ${feature.properties.FEATURE_TYPE}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
 
+  }
+  
+}
 var biked3 = d3.json(ottawajson).then(function(bikedata){
   L.geoJson(bikedata, {
     filter: bikefilter, 
@@ -34,7 +40,7 @@ var biked3 = d3.json(ottawajson).then(function(bikedata){
         fillOpacity: 1, 
         weight: 4
       };
-    },
+    }, onEachFeature: onEachFeature
   }).addTo(map);
 
   function bikefilter(feature) {
