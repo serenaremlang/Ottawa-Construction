@@ -173,25 +173,6 @@ console.log(wardd3)
 
 // });
 
-var biked3 = d3.json(ottawajson).then(function(bikedata){
-  L.geoJson(bikedata, {
-    filter: bikefilter, 
-    style: function(feature){
-      return{
-        color: getColor(feature.properties.WORK_TYPE_GROUP), 
-        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
-        fillOpacity: 1, 
-        weight: 2.5};
-      }, onEachFeature: onEachFeature
-    }).addTo(layers.Bike_path);
-
-  function bikefilter(feature) {
-    if (feature.properties.WORK_TYPE_GROUP === 'Bike-Lanes') return true
-  };
-});
-
-console.log(biked3)
-
 
 var multid3 = d3.json(ottawajson).then(function(multidata){
   L.geoJson(multidata, {
@@ -202,6 +183,10 @@ var multid3 = d3.json(ottawajson).then(function(multidata){
         fillColor: getColor(feature.properties.WORK_TYPE_GROUP), fillOpacity: 1, 
         weight: 2.5};
       }, onEachFeature: onEachFeature
+      
+        
+        
+      
     }).addTo(layers.Multi_use);
 
   function multifilter(feature) {
@@ -210,6 +195,29 @@ var multid3 = d3.json(ottawajson).then(function(multidata){
 });
 
 console.log(multid3)
+
+var biked3 = d3.json(ottawajson).then(function(bikedata){
+  L.geoJson(bikedata, {
+    filter: bikefilter, 
+    style: function(feature){
+      return{
+        color: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
+        fillOpacity: 1, 
+        weight: 2.5};
+      }, onEachFeature: function(feature, layer){
+        for (i=0;i<feature.length;i++) {
+        layer.bindPopup((`Work Type: ${feature.properties.WORK_TYPE_GROUP}  Start Date: ${feature.properties.TARGETED_START}`));}
+      }
+    }).addTo(layers.Bike_path);
+
+  function bikefilter(feature) {
+    if (feature.properties.WORK_TYPE_GROUP === 'Bike-Lanes') return true
+  };
+});
+
+console.log(biked3)
+
 
 
 var waterd3 = d3.json(ottawajson).then(function(waterdata){

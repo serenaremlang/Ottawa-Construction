@@ -23,25 +23,27 @@ function getColor(FEATURE_TYPE) {
   else if (FEATURE_TYPE === "Sewer") return 'aqua';
 
 };
-function onEachFeature(feature, layer){
+function onEachFeature(feature, map){
     for (i=0;i<feature.length;i++) {
-      layer.bindPopup((`Work Type: ${feature.properties.WORK_TYPE_GROUP}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
+      map.bindPopup((`Work Type: ${feature.properties.WORK_TYPE_GROUP}  Targeted Start Date: ${feature.properties.TARGETED_START}`));
   
     }
     
   }
-  var multid3 = d3.json(ottawajson).then(function(multidata){
+var multid3 = d3.json(ottawajson).then(function(multidata){
     L.geoJson(multidata, {
-      filter: multifilter, 
+      filter: bikefilter, 
       style: function(feature){
         return{
           color: getColor(feature.properties.WORK_TYPE_GROUP), 
-          fillColor: getColor(feature.properties.WORK_TYPE_GROUP), fillOpacity: 1, 
-          weight: 2.5};
-        }, onEachFeature: onEachFeature
-      }).addTo(layers.Multi_use);
+          fillColor: getColor(feature.properties.WORK_TYPE_GROUP), 
+          fillOpacity: 1, 
+          weight: 2.5
+        };
+      }, onEachFeature: onEachFeature
+    }).addTo(map);
   
-    function multifilter(feature) {
+    function bikefilter(feature) {
       if (feature.properties.WORK_TYPE_GROUP === 'Multi-Pathway') return true
     };
   });
