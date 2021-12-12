@@ -43,12 +43,12 @@ function getGaugeData(wardID) {
         rotation: 90,
         direction: 'clockwise',
         values: [180/9, 180/9, 180/9, 180/9, 180/9, 180/9, 180/9, 180/9, 180/9, 180],
-        text: ['0-100k','100k-200k','200k-300k','300k-400k','400k-500k','500k-600k','600k-700k', '700kM-800k', '> 800k'],        
+        text: ['0-100k','100k-200k','200k-300k','300k-400k','400k-500k','500k-600k','600k-700k', '700kM-800k', '> 899k'],        
         textinfo: 'text',
         textposition: 'inside',
         marker: {
             colors: ['#F8F3EC','#F4F1E5','#E9E6CA','#E2E4B1','#D5E49D','#B7CC92','#8CBF88','#8ABB8F','#85B48A','transparent'],
-            labels: ['0-100k','100k-200k','200k-300k','300k-400k','400k-500k','500k-600k','600k-700k', '700kM-800k', '> 800k']              
+            labels: ['0-100k','100k-200k','200k-300k','300k-400k','400k-500k','500k-600k','600k-700k', '700kM-800k', '> 899k']              
         },
         hoverinfo: "skip",
         showlegend: false
