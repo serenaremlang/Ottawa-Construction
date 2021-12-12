@@ -174,3 +174,7 @@ body {
   padding: 0;
   margin: 0px auto;
 }
+
+.disabled-link {
+	pointer-events: none;
+}
