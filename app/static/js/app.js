@@ -16,6 +16,16 @@ d3.selectAll(".photobanner img").on("click", function() {
 //     window.location.href = uri;
 // });
 
+d3.select("#btnShowAllWards").on("click", function() {
+    optionChanged("w0");
+})
+
+function filterWard(wardID)
+{
+    //console.log('inside filterWard wardID passed in was: '+wardID)
+    optionChanged('w'+wardID);
+}
+
 // OnChange function for select. Takes in the Test Subject ID to fitler on
 function optionChanged(wardID) {
     //console.log(wardID);
@@ -29,7 +39,8 @@ function optionChanged(wardID) {
             if (i === 13) { continue; }
             //console.log(w);
             d3.select(w).attr('class', 'row show');
-        }        
+        }      
+        d3.select("#btnShowAllWards").classed('disabled-link', true);
     } 
     else 
     {
@@ -44,7 +55,8 @@ function optionChanged(wardID) {
             d3.select(w).attr('class', 'row hide');
         }    
         //console.log('show one');
-        d3.select('#'+wardID).attr('class', 'row show')
+        d3.select('#'+wardID).attr('class', 'row show');
+        d3.select("#btnShowAllWards").classed('disabled-link', false);
     }   
     
     

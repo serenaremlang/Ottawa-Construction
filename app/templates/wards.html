@@ -173,42 +173,52 @@
     <h2 class="display-4" style="font-weight: initial;">Latest Ottawa Construction Projects by Ward</h2>
     <a class="btn btn-primary btn-lg" href="/wards/scrape" role="button">Get Latest</a>
   </div>
-  <div id="mapid"></div>
+  <div id="mapid" style="width:100%;"></div>
   <div class="container">
-    <div class="row" style="margin-top:40px;"> </div>  
-    <div class="row" style="margin-top:40px;">
+    <div class="row" style="margin-top:40px;"> 
+      <a id="btnShowAllWards" class="btn btn-primary btn-lg" href="#" role="button">Show all Wards</a>
+    </div>  
+    <!-- <div class="row" style="margin-top:40px;">
       Select a ward to filter for: <select id="ddlWard" onchange="optionChanged(this.value)">
           <option value="w0">All</option>   
         {% for item in ward_lookup %} 
           <option value="{{ item.optionID }}">{{ item.optionData }} </option> 
         {% endfor %}      
       </select>
-    </div>
-    <div class="row" style="margin-top:40px;">   
-      {% for item in ward_markup %}
-      <div id="{{ item.optionID }}" class="row">            
-        {{ item.title | safe }}          
-        {{ item.listData | safe }}  
-      </div>    
-      {% endfor %}      
+    </div> -->
+    <div class="row" style="margin-top:40px;">  
+      <div class="col-md-7"> 
+        {% for item in ward_markup %}
+        <div id="{{ item.optionID }}" class="row">            
+          {{ item.title | safe }}          
+          {{ item.listData | safe }}  
+        </div>    
+        {% endfor %}  
+      </div>  
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>  
       <div class="row"><div class="col-12"><hr /></div></div>
     </div> 
    
   </div>
 </body>
-<!-- D3 JavaScript -->
 
-
+<!-- Leaflet JavaScript -->
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
 integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 crossorigin=""></script>
-
+<!-- D3 JavaScript -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<!-- Our custom JavaScript -->
-
+<!-- Plotly JavaScript -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-- API Config -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/config.js') }}"></script>
-    <!-- Our leaflet JavaScript -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/wardmap.js') }}"></script>
-    <!-- Our custom JavaScript -->
+<!-- Our custom JavaScript -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+<!-- Our custom JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/speedometer.js') }}"></script>
+<!-- Our leaflet JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/wardmap.js') }}"></script>
+
 </html>
