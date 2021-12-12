@@ -81,7 +81,7 @@ wardd3 = d3.json(wardjson).then(function(data) {
 
           let gaugePlotData = getGaugeData(feature.properties.WARD_NUM);
           gaugePlotData.layout.paper_bgcolor='rgba(0,0,0,0)';
-          gaugePlotData.layout.plot_bgcolor='rgba(0,0,0,0)';
+          gaugePlotData.layout.plot_bgcolor='rgba(0,0,0,0)';         
           Plotly.react('gauge', gaugePlotData.trace, gaugePlotData.layout); 
         }
       });

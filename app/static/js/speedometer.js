@@ -123,8 +123,11 @@ function getGaugeData(wardID) {
 
     // layout
     let gaugeLayout = {
-        title: `<b>Ward Project Costing</b><br>in Relation to all Wards dollar values <b>Ward:${wardID}</b>`,      
-        
+        title: { text: `<b>Ward Project Costing</b><br>in Relation to all Wards dollar values <b>Ward:${wardID}</b>`,
+            font: {
+                color:'#aaaaaa'
+            }
+        },         
         shapes:[{
             type: 'path',
             path: pth,
