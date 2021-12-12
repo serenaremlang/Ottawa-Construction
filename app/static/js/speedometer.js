@@ -99,6 +99,7 @@ function getGaugeData(wardID) {
             break;
         case (c > 9):
             d = 9;
+            offset = 0;
             break;
         default:
             d = c;
